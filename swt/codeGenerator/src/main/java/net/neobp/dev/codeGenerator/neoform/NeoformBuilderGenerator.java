@@ -46,7 +46,7 @@ public class NeoformBuilderGenerator extends NeoformGenerator {
             jct.addImport(getModel().getFormClassnameTemplate().getGenClassname().getName()+".Actions");
             jct.addImport(getModel().getFormClassnameTemplate().getGenClassname().getName()+".Props");
             //jct.addImport(getModel().getLayoutClassnameTemplate().getGenClassname().getName());
-            jct.addImport("net.neobp.neoform.gui.NeoformLayout");
+            jct.addImport("net.neobp.neoform.swt.gui.NeoformLayout");
 
             jct.addPropertyDef("private NeoformLayout<Props, Actions> layout;");
             jct.addPropertyDef("private "+getModel().getControllerClassnameTemplate().getGenClassname().getSimpleName()+" controller;");

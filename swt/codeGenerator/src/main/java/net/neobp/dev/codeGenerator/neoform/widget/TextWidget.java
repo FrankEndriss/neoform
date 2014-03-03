@@ -6,7 +6,7 @@ package net.neobp.dev.codeGenerator.neoform.widget;
 public class TextWidget extends GenericWidget
 {
     public TextWidget() {
-        super("net.neobp.neoform.widget.NeoformText", "java.lang.String");
+        super("net.neobp.neoform.swt.widget.NeoformText", "java.lang.String");
         addConstructorArg("getFormToolkit()");
     }
 }

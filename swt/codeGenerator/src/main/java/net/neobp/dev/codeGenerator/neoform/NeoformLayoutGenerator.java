@@ -32,7 +32,7 @@ public class NeoformLayoutGenerator extends NeoformGenerator
         jct.addImport("org.eclipse.draw2d.GridData");
         jct.addImport("org.eclipse.swt.layout.GridLayout");
         jct.addImport("org.eclipse.swt.widgets.Composite");
-        jct.addImport("net.neobp.neoform.gui.NeoformLayout");
+        jct.addImport("net.neobp.neoform.swt.gui.NeoformLayout");
         
         final Classname clsForm=getModel().getFormClassnameTemplate().getUsrClassName();
         jct.addImport(clsForm.getName());

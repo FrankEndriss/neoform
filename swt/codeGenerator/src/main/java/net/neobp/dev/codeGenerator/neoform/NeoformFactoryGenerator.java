@@ -51,13 +51,13 @@ public class NeoformFactoryGenerator extends NeoformGenerator {
         jct.addImport(getModel().getContextClassnameTemplate().getGenClassname().getName());
         jct.addImport(getModel().getControllerClassnameTemplate().getGenClassname().getName());
         jct.addImport("net.neobp.neoform.gui.ModelHolder");
-        jct.addImport("net.neobp.neoform.value.ComponentAdapter");
-        jct.addImport("net.neobp.neoform.value.ValueChangeListener");
+        jct.addImport("net.neobp.neoform.swt.value.ComponentAdapter");
+        jct.addImport("net.neobp.neoform.swt.value.ValueChangeListener");
         jct.addImport("net.neobp.neoform.value.ValueHolder");
-        jct.addImport("net.neobp.neoform.widget.NeoformLabel");
-        jct.addImport("net.neobp.neoform.widget.NeoformTable.TableColDesc");
-        jct.addImport("net.neobp.neoform.gui.NeoformLayout");
-        jct.addImport("net.neobp.neoform.gui.NeoformTableLayout");
+        jct.addImport("net.neobp.neoform.swt.widget.NeoformLabel");
+        jct.addImport("net.neobp.neoform.swt.widget.NeoformTable.TableColDesc");
+        jct.addImport("net.neobp.neoform.swt.gui.NeoformLayout");
+        jct.addImport("net.neobp.neoform.swt.gui.NeoformTableLayout");
         jct.addImport("org.eclipse.swt.widgets.Composite");
         jct.addImport("org.eclipse.swt.widgets.Control");
         jct.addImport("java.util.ArrayList");
@@ -71,7 +71,7 @@ public class NeoformFactoryGenerator extends NeoformGenerator {
                     "final Composite parent) {");
             // constructor call to create label
             m.add("\treturn new NeoformLabel(context.getFormToolkit(), parent, "+
-                    "context.getMessageSource().getMessage(\""+prop.getLabelKey()+"\"));");
+                    "context.getMessageSource().getMessage(\""+prop.getLabelKey()+"\"), context.getNeoformExec());");
             m.add("}");
             jct.addMethod(m);
             
@@ -123,9 +123,9 @@ public class NeoformFactoryGenerator extends NeoformGenerator {
             if(!firstArg)
                 line+=", ";
             if(isNeoformTable)
-                line+="parent, factory.createTableDesc(subContext));";
+                line+="parent, factory.createTableDesc(subContext), context.getNeoformExec());";
             else
-                line+="parent);";
+                line+="parent, context.getNeoformExec());";
             m.add(line);
             m.add("}");
             jct.addMethod(m);
@@ -146,7 +146,7 @@ public class NeoformFactoryGenerator extends NeoformGenerator {
                 m.add("\tfinal ValueChangeListener<"+typeofProp+"> vcl=null;");
             } else {
                 m.add("\tfinal ValueChangeListener<"+typeofProp+"> vcl=new ValueChangeListener<"+typeofProp+">() {");
-                m.add("\t\tpublic void valueChanged(ValueHolder<"+typeofProp+"> src, "+typeofProp+" newValue) {");
+                m.add("\t\tpublic void valueChanged(ValueHolder<"+typeofProp+", Control> src, "+typeofProp+" newValue) {");
                 m.add("\t\t\tfinal "+getModel().getModelClass().getSimpleName()+" model=modelHolder.getModel();");
                 m.add("\t\t\tif(model!=null) {");
                 if(!"this".equals(prop.getModelPropertyName()))

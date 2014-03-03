@@ -40,7 +40,7 @@ public class NeoformControllerGenerator extends NeoformGenerator
 
         jct.addImport("java.util.List");
         jct.addImport("java.util.Collection");
-        jct.addImport("net.neobp.neo.nms.core.validation.ValidationMessage");
+        jct.addImport("net.neobp.neoform.validation.ValidationMessage");
         jct.addImport("net.neobp.neoform.value.DirtyListener");
         jct.addImport("net.neobp.neoform.value.DirtyProvider");
         jct.addImport("net.neobp.neoform.validation.ValidationStateListener");

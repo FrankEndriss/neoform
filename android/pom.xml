@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+        <artifactId>neoform</artifactId>
+        <groupId>net.neobp.neoform</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <groupId>net.neobp.neoform.android</groupId>
+  <artifactId>android</artifactId>
+
+  <packaging>pom</packaging>
+  <name>Neoform Android Project</name>
+  <description>Android implementation of net.neobp.neoform</description>
+  
+  <properties>
+    <com.google.android.version>2.3.3</com.google.android.version>
+    <maven-android-plugin.version>2.9.0-beta-5</maven-android-plugin.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.google.android</groupId>
+        <artifactId>android</artifactId>
+        <version>${com.google.android.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.google.android</groupId>
+        <artifactId>android-test</artifactId>
+        <version>${com.google.android.version}</version>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+
+  </dependencyManagement>
+
+  <modules>
+<!-- TODO
+  	<module>codeGenerator</module>
+  	<module>codeGeneratorMojo</module>
+-->
+	<module>neoform-android-gui</module>
+  </modules>
+
+</project>

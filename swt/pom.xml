@@ -17,7 +17,7 @@
   <modules>
   	<module>codeGenerator</module>
   	<module>codeGeneratorMojo</module>
-	<module>neoform-swt-gui</module>
+	<module>../../neo-nms-sup-windows/neoform-swt-gui</module>
   </modules>
 
 </project>

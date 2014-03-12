@@ -10,6 +10,8 @@ import android.widget.TextView;
 import net.neobp.neoform.android.gui.AbstractNeoformComponent;
 import net.neobp.neoform.exec.NeoformExec;
 
+/** Android implementation of NeoformText.
+ */
 public class NeoformText extends AbstractNeoformComponent<String>
 {
     /** The android delegate for this component. */
@@ -27,33 +29,25 @@ public class NeoformText extends AbstractNeoformComponent<String>
         
         textDelegate.addTextChangedListener(new TextWatcher() {
 
-            public void afterTextChanged(Editable arg0)
-            {
-            }
-
-            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3)
-            {
-            }
-
-            public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3)
-            {
+            public void afterTextChanged(Editable arg0) {
                 fireValueChanged(textDelegate.getText().toString());
             }
+
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { }
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { }
         });
     }
 
     @Override
-    protected void value2widget(final String value)
-    {
+    protected void value2widget(final String value) {
         textDelegate.setText(value);
     }
     
-    public void layout2widget(LayoutParams layoutData) {
+    public void layout2widget(final LayoutParams layoutData) {
         textDelegate.setLayoutParams(layoutData);
     }
 
-    public View getControl()
-    {
+    public View getControl() {
         return textDelegate;
     }
 }

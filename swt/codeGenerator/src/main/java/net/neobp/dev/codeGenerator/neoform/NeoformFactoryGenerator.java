@@ -51,9 +51,9 @@ public class NeoformFactoryGenerator extends NeoformGenerator {
         jct.addImport(getModel().getContextClassnameTemplate().getGenClassname().getName());
         jct.addImport(getModel().getControllerClassnameTemplate().getGenClassname().getName());
         jct.addImport("net.neobp.neoform.gui.ModelHolder");
-        jct.addImport("net.neobp.neoform.swt.value.ComponentAdapter");
-        jct.addImport("net.neobp.neoform.swt.value.ValueChangeListener");
-        jct.addImport("net.neobp.neoform.value.ValueHolder");
+        jct.addImport("net.neobp.neoform.swt.value.SwtComponentAdapter");
+        jct.addImport("net.neobp.neoform.swt.value.SwtValueChangeListener");
+        jct.addImport("net.neobp.neoform.swt.value.SwtValueHolder");
         jct.addImport("net.neobp.neoform.swt.widget.NeoformLabel");
         jct.addImport("net.neobp.neoform.swt.widget.NeoformTable.TableColDesc");
         jct.addImport("net.neobp.neoform.swt.gui.NeoformLayout");
@@ -133,7 +133,7 @@ public class NeoformFactoryGenerator extends NeoformGenerator {
             m=new ArrayList<String>();
             jct.addImport(prop.getWidget().getClassname().getName());
 
-            final String adapterType="ComponentAdapter<"+widgetSimpleName+", "+typeofProp+"> ";
+            final String adapterType="SwtComponentAdapter<"+widgetSimpleName+", "+typeofProp+"> ";
 
             m.add("public "+adapterType+" "+
                     "create"+StrUtil.firstUp(prop.getName())+"Adapter(\n\t\tfinal "+
@@ -142,11 +142,11 @@ public class NeoformFactoryGenerator extends NeoformGenerator {
                     "ModelHolder<"+getModel().getModelClass().getSimpleName()+"> modelHolder) {");
 
             if(prop.isReadonly()) {
-                m.add("\t// no ValueChangeListener because property is readonly");
-                m.add("\tfinal ValueChangeListener<"+typeofProp+"> vcl=null;");
+                m.add("\t// no SwtValueChangeListener because property is readonly");
+                m.add("\tfinal SwtValueChangeListener<"+typeofProp+"> vcl=null;");
             } else {
-                m.add("\tfinal ValueChangeListener<"+typeofProp+"> vcl=new ValueChangeListener<"+typeofProp+">() {");
-                m.add("\t\tpublic void valueChanged(ValueHolder<"+typeofProp+", Control> src, "+typeofProp+" newValue) {");
+                m.add("\tfinal SwtValueChangeListener<"+typeofProp+"> vcl=new SwtValueChangeListener<"+typeofProp+">() {");
+                m.add("\t\tpublic void valueChanged("+typeofProp+" newValue) {");
                 m.add("\t\t\tfinal "+getModel().getModelClass().getSimpleName()+" model=modelHolder.getModel();");
                 m.add("\t\t\tif(model!=null) {");
                 if(!"this".equals(prop.getModelPropertyName()))
@@ -156,7 +156,7 @@ public class NeoformFactoryGenerator extends NeoformGenerator {
                 m.add("\t\t}");
                 m.add("\t};");
             }
-            m.add("\treturn new ComponentAdapter<"+widgetSimpleName+", "+typeofProp+">(control, vcl);");
+            m.add("\treturn new SwtComponentAdapter<"+widgetSimpleName+", "+typeofProp+">(control, vcl);");
             m.add("\t// TODO: ValueValidators of property");
             m.add("\t// like: nameAdapter.addValueValidator(valueValidator);");
             m.add("}");

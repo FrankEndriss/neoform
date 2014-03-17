@@ -12,6 +12,7 @@ public class JavaCodeTemplate {
 
 	private String packageName;
 	private final Set<String> imports=new HashSet<String>();
+	private String classDoc="";
 	private String className;
 	private String extendsName;
 	private final Set<String> interfaces=new HashSet<String>();
@@ -21,6 +22,13 @@ public class JavaCodeTemplate {
 	
 	public void setPackageName(final String packageName) {
 		this.packageName=packageName;
+	}
+
+	/** Sets the class level documentation.
+	 * @param doc the class documentation
+	 */
+	public void setClassDoc(final String doc) {
+	    this.classDoc=doc;
 	}
 
 	public void setClassName(final String name) {
@@ -62,7 +70,9 @@ public class JavaCodeTemplate {
 			ret.append("import "+s+";\n");
 			
 		ret.append("\n");
-		
+		ret.append(classDoc);
+		if(!classDoc.endsWith("\n"))
+		    ret.append("\n");
 		ret.append("public class "+className);
 		if(extendsName!=null)
 			ret.append(" extends "+extendsName);

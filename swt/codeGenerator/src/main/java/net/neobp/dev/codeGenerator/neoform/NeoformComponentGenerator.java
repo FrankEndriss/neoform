@@ -37,14 +37,14 @@ public class NeoformComponentGenerator extends NeoformGenerator {
         jct.setPackageName(classname.getPackageName());
         jct.setClassName(classname.getSimpleName());
         jct.addImport(getModel().getModelClass().getName());
-        jct.addImport("net.neobp.neoform.swt.value.ValueHolder");
-        jct.addImport("net.neobp.neoform.swt.value.ValueChangeListener");
+        jct.addImport("net.neobp.neoform.swt.value.SwtValueHolder");
+        jct.addImport("net.neobp.neoform.swt.value.SwtValueChangeListener");
         jct.addImport("org.eclipse.swt.widgets.Composite");
         jct.addImport("org.eclipse.swt.widgets.Control");
         jct.addImport("org.eclipse.swt.SWT");
         jct.addImport("net.neobp.neoform.gui.ModelObjectChangeListener"); // ???
         
-        jct.addImplements("ValueHolder<"+getModel().getModelClass().getSimpleName()+">");
+        jct.addImplements("SwtValueHolder<"+getModel().getModelClass().getSimpleName()+">");
         
         jct.addPropertyDef("private final Composite control");
         jct.addImport(getModel().getContextClassnameTemplate().getUsrClassName().getName());
@@ -103,7 +103,7 @@ public class NeoformComponentGenerator extends NeoformGenerator {
         m=new ArrayList<String>();
         m.add("@Override");
 
-        m.add("public void removeValueChangeListener(ValueChangeListener<"+
+        m.add("public void removeValueChangeListener(SwtValueChangeListener<"+
                 getModel().getModelClass().getSimpleName()+"> valueChangeListener) {");
         m.add("\tthrow new RuntimeException(\"still not implemented\");");
         m.add("\t// TODO implement");
@@ -112,7 +112,7 @@ public class NeoformComponentGenerator extends NeoformGenerator {
 
         m=new ArrayList<String>();
         m.add("@Override");
-        m.add("public void addValueChangeListener(final ValueChangeListener<"+
+        m.add("public void addValueChangeListener(final SwtValueChangeListener<"+
                 getModel().getModelClass().getSimpleName()+"> valueChangeListener) {");
         m.add("\t// not sure what a \"value change\" is in this context");
         m.add("\t// could be a \"model object change\", or a \"property of model object change\"");
@@ -122,13 +122,11 @@ public class NeoformComponentGenerator extends NeoformGenerator {
                 m.add("\t// no ValueChangeListenr for property "+prop.getName()+" because it is readonly");
             } else {
                 jct.addImport(prop.getWidget().getEditedValueClassname().getName());
-                m.add("\tform.get"+StrUtil.firstUp(prop.getModelPropertyName())+"Adapter().addValueChangeListener(new ValueChangeListener<"+
+                m.add("\tform.get"+StrUtil.firstUp(prop.getModelPropertyName())+"Adapter().addValueChangeListener(new SwtValueChangeListener<"+
                     prop.getWidget().getEditedValueClassname().getSimpleName()+">() {");
                 m.add("\t\t@Override");
-                m.add("\t\tpublic void valueChanged(ValueHolder<"+prop.getWidget().getEditedValueClassname().getSimpleName()+"> src, "+
-                    prop.getWidget().getEditedValueClassname().getSimpleName()+" newValue) {");
-                m.add("\t\t\tvalueChangeListener.valueChanged("+
-                    getModel().getComponentClassnameTemplate().getGenClassname().getSimpleName()+".this, model);");
+                m.add("\t\tpublic void valueChanged("+prop.getWidget().getEditedValueClassname().getSimpleName()+" newValue) {");
+                m.add("\t\t\tvalueChangeListener.valueChanged(model);");
                 m.add("\t\t}");
                 m.add("\t});");
             }
@@ -140,8 +138,7 @@ public class NeoformComponentGenerator extends NeoformGenerator {
         m.add("\t\t@Override");
         m.add("\t\tpublic void modelObjectWasSet("+
                 getModel().getModelClass().getSimpleName()+" model, boolean isNew) {");
-        m.add("\t\t\tvalueChangeListener.valueChanged("+
-                getModel().getComponentClassnameTemplate().getGenClassname().getSimpleName()+".this, model);");
+        m.add("\t\t\tvalueChangeListener.valueChanged(model);");
         m.add("\t\t}");
         m.add("\t});");
         m.add("}");

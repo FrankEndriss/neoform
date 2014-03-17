@@ -41,6 +41,7 @@ public class NeoformFormGenerator extends NeoformGenerator {
 	    JavaCodeTemplate template=new JavaCodeTemplate();
 	    
 		template.setPackageName(getModel().getFormClassnameTemplate().getGenClassname().getPackageName());
+		template.setClassDoc("/** Generated from "+getClass().getName()+" */");
 		template.setClassName(getModel().getFormClassnameTemplate().getGenClassname().getSimpleName());
 		template.setExtends("AbstractNeoform<"+getModel().getModelClass().getSimpleName()+">");
 
@@ -53,7 +54,7 @@ public class NeoformFormGenerator extends NeoformGenerator {
 		        "net.neobp.neoform.swt.gui.NeoformLayout",
 		        "net.neobp.neoform.gui.PersistenceCallback",
 		        "net.neobp.neoform.validation.ValueValidator",
-		        "net.neobp.neoform.swt.value.ComponentAdapter",
+		        "net.neobp.neoform.swt.value.SwtComponentAdapter",
 		        "net.neobp.neoform.value.ValueChangeListener",
 		        "net.neobp.neoform.value.ValueHolder",
 		        "net.neobp.neoform.swt.widget.NeoformCheckbox",
@@ -92,7 +93,7 @@ public class NeoformFormGenerator extends NeoformGenerator {
 		enumActions.add("}");
 		template.addOtherCode(enumActions);
 
-		template.addPropertyDef("private Map<Props, ComponentAdapter<?, ?>> property2AdapterMap=new HashMap<Props, ComponentAdapter<?, ?>>()");
+		template.addPropertyDef("private Map<Props, SwtComponentAdapter<?, ?>> property2AdapterMap=new HashMap<Props, SwtComponentAdapter<?, ?>>()");
 		template.addPropertyDef("private Map<Props, NeoformLabel> property2LabelMap=new HashMap<Props, NeoformLabel>()");
 
 		for(NeoformAction action : getModel().getActions())
@@ -186,7 +187,6 @@ public class NeoformFormGenerator extends NeoformGenerator {
 		m.add("\tComposite lParent;");
 		m.add("\tObject layoutData;\n");
 
-	    String line;
         int i=0;
 		for(NeoformProperty prop : getModel().getProperties()) {
 		    i=i+1;
@@ -239,7 +239,7 @@ public class NeoformFormGenerator extends NeoformGenerator {
                 widgetSimpleName+=("<"+typeofProp+", "+uncardinalTypeofProp+">");
             }
 
-			String adapterType="ComponentAdapter<"+widgetSimpleName+", "+typeofProp+"> ";
+			String adapterType="SwtComponentAdapter<"+widgetSimpleName+", "+typeofProp+"> ";
 		    template.addPropertyDef("private "+adapterType+" "+lAdapVarName);
 
             // one public getter for every properties widget adapter

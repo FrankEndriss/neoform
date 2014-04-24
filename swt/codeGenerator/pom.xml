@@ -11,6 +11,7 @@
   <name>Neoform SWT Generators</name>
 
 
+  <!--
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -18,5 +19,5 @@
       <version>3.1.1.RELEASE</version>
     </dependency>
   </dependencies>
-
+  -->
 </project>

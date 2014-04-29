@@ -12,8 +12,11 @@ import net.neobp.dev.codeGenerator.StrUtil;
 import net.neobp.dev.codeGenerator.neoform.model.Classname;
 import net.neobp.dev.codeGenerator.neoform.model.NeoformContextField;
 
-public class NeoformContextGenerator extends NeoformGenerator
-{
+/** Generates the Context-Class for a neoform.
+ * The Context-Class is a fairly simple class with fields/getters/setters to external objects, configured in the 
+ * forms configuration.
+ */
+public class NeoformContextGenerator extends NeoformGenerator {
 
     public void generate() throws IOException {
 
@@ -32,7 +35,7 @@ public class NeoformContextGenerator extends NeoformGenerator
     private String getCode() {
         final Classname classname=getModel().getContextClassnameTemplate().getGenClassname();
 
-        JavaCodeTemplate jct=new JavaCodeTemplate();
+        final JavaCodeTemplate jct=new JavaCodeTemplate();
         jct.setPackageName(classname.getPackageName());
         jct.setClassName(classname.getSimpleName());
 
@@ -44,7 +47,9 @@ public class NeoformContextGenerator extends NeoformGenerator
         for(NeoformContextField contextField : getModel().getContextFields()) {
             Classname fieldClassname=contextField.getFieldClassname();
             if(fieldClassname==null) {
-                fieldClassname=new Classname(getContext().getSpringCallback().getType(contextField.getBeanRef()).getName());
+                // SpringCallback usage disabled per 2014-04-29
+                throw new RuntimeException("fieldClassname unknown, form="+getModel().getFormName()+" "+"field="+contextField.getFieldName());
+                //fieldClassname=new Classname(getContext().getSpringCallback().getType(contextField.getBeanRef()).getName());
             }
             jct.addImport(fieldClassname.getName());
             jct.addPropertyDef("private "+fieldClassname.getSimpleName()+" "+contextField.getFieldName());

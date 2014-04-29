@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+  	<groupId>net.neobp.neoform.swt</groupId>
+  	<artifactId>swt</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent> 
+
+  <artifactId>neoform-sample</artifactId>
+  <packaging>jar</packaging>
+  <name>Neoform Sample</name>
+
+
+  <dependencies>
+      <dependency>
+        <groupId>net.neobp.neoform.swt</groupId>
+        <artifactId>neoform-sample-vt</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.neobp.neoform.swt</groupId>
+        <artifactId>neoform-swt-gui</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse</groupId>
+        <artifactId>org.eclipse.jface</artifactId>
+        <version>3.5.0.I20090525-2000</version>
+      </dependency>
+  </dependencies>
+
+  <build>
+  <plugins>
+    <plugin>
+        <groupId>net.neobp.neoform.swt</groupId>
+        <artifactId>codeGeneratorMojo</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+
+        <executions>
+            <execution>
+                <phase>generate-sources</phase>
+                <goals>
+                    <goal>generateNeoforms</goal>
+                </goals>
+            </execution>
+        </executions>
+
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+
+</project>
+
+
+
+

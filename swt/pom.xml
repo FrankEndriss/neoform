@@ -12,12 +12,14 @@
 
   <packaging>pom</packaging>
   <name>Neoform SWT Project</name>
-  <description>SWT implementation  of net.neobp.neoform</description>
+  <description>SWT implementation of net.neobp.neoform</description>
   
   <modules>
   	<module>codeGenerator</module>
   	<module>codeGeneratorMojo</module>
-	<module>../../neo-nms-sup-windows/neoform-swt-gui</module>
+	<module>neoform-swt-gui</module>
+	<module>neoform-sample-vt</module>
+	<module>neoform-sample</module>
   </modules>
 
 </project>

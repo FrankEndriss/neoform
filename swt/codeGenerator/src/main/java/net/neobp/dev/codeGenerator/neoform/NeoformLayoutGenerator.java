@@ -29,7 +29,7 @@ public class NeoformLayoutGenerator extends NeoformGenerator
 
     private void doGenerate(JavaCodeTemplate jct)
     {
-        jct.addImport("org.eclipse.draw2d.GridData");
+        jct.addImport("org.eclipse.swt.layout.GridData");
         jct.addImport("org.eclipse.swt.layout.GridLayout");
         jct.addImport("org.eclipse.swt.widgets.Composite");
         jct.addImport("net.neobp.neoform.swt.gui.NeoformLayout");

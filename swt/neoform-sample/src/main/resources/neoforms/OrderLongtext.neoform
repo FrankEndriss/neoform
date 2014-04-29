@@ -1,0 +1,19 @@
+
+<Form
+    formName="OrderLongtextDialog"
+    modelClassName="net.neobp.sampleModels.OrderLongtextViewTransfer"
+    formType="SINGLE"
+>
+
+    <Property name="line" type="Text" labelKey="longtext.translate.me" />
+
+    <Context 
+        extClassName="net.neobp.neo.nms.forms.orderHeader.CommonContext"
+    >
+    <!--
+       <Field ref="orderHeaderEnhancementService" />
+       <Field ref="messageSource" />
+       -->
+    </Context>
+
+</Form>

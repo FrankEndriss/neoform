@@ -39,9 +39,11 @@ import org.apache.maven.model.Resource;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
+/*
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.convert.ConversionService;
+*/
 import org.xml.sax.ContentHandler;
 import org.xml.sax.XMLReader;
 
@@ -252,6 +254,8 @@ public class GuiGenerator extends AbstractMojo {
     private SpringCallback springCallback;
     
     private SpringCallback createSpringCallback() {
+	return null;
+/*
         return new SpringCallback() {
 
             final ClassPathXmlApplicationContext springApplicationContext=createSpringContext();
@@ -275,9 +279,11 @@ public class GuiGenerator extends AbstractMojo {
                 return springApplicationContext.getType(springBean);
             }
         };
+*/
     }
     
 
+/*
     private ClassPathXmlApplicationContext createSpringContext()
     {
                 // Loading of applications spring ApplicationContext.
@@ -318,4 +324,5 @@ public class GuiGenerator extends AbstractMojo {
             springApplicationContext.refresh();
             return springApplicationContext;
         }
+*/
 }

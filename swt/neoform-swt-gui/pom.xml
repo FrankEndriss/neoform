@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+  	<groupId>net.neobp.neoform.swt</groupId>
+  	<artifactId>swt</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>neoform-swt-gui</artifactId>
+  <packaging>jar</packaging>
+  <name>Neoform SWT gui classes</name>
+
+  <description>Neoform SWT gui package.
+  </description>
+
+  <build>
+    <plugins>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.neobp.neoform.base</groupId>
+      <artifactId>neoform-java</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.swt.win32</groupId>
+      <artifactId>org.eclipse.swt.win32.x86</artifactId>
+      <version>3.5.0.v3550b</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.ui</groupId>
+      <artifactId>org.eclipse.ui.forms</artifactId>
+      <version>3.4.0.v20090526</version>
+    </dependency>
+  </dependencies>
+</project>

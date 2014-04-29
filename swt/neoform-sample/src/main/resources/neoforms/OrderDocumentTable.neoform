@@ -1,0 +1,14 @@
+<Form
+    formName="OrderDocumentTable"
+    modelClassName="net.neobp.sampleModels.OrderDocumentViewTransfer"
+    formType="SINGLE"
+>
+
+    <Property name="createUser" type="Text" labelKey="user.translate.me" />
+    <Property name="description" type="Text" labelKey="description" />
+    <Property name="fileName" type="Text" labelKey="File" />
+
+    <Context extClassName="net.neobp.neo.nms.forms.orderHeader.CommonContext"
+    />
+
+</Form>

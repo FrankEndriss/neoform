@@ -10,7 +10,7 @@
   <description>Parent for the several net.neobp.neoform projects.</description>
   
   <modules>
-  	<module>../neo-nms-sup-windows/neoform-java</module>
+  	<module>neoform-java</module>
   	<module>android</module>
   	<module>swt</module>
   </modules>

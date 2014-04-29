@@ -194,7 +194,7 @@ public class NeoformFormGenerator extends NeoformGenerator {
 
 			String lAdapVarName=StrUtil.camelCase(prop.getName()+"Adapter");
             final List<String> impList=new ArrayList<String>();
-			String typeofProp=ClazzUtil.getJavaType(getModel().getModelClass(), prop, impList);
+			final String typeofProp=ClazzUtil.getJavaType(getModel().getModelClass(), prop, impList);
 			template.addImport(getModel().getModelClass().getName());
 			for(String imp : impList)
 			    template.addImport(imp);

@@ -1,0 +1,61 @@
+
+<Form
+    formName="OrderHeaderDialog"
+	modelClassName="net.neobp.sampleModels.OrderHeaderViewTransfer"
+	formType="SINGLE"
+>
+	<Property name="addressName" type="Text" labelKey="translate.me" />
+	<Property name="addressStreet" type="Text" labelKey="translate.me2" />
+	<Property name="equipment" type="Text" labelKey="translate.me3" />
+	<Property name="closed" type="Checkbox" labelKey="translate.me.boolean" />
+
+<!--
+	<Property name="equipment" type="Text" labelKey="translate.me3" >
+	   <Validator class="net.neobp.blah.MyValidator" />
+	</Property>
+-->
+    <!-- readonly makes that no setter-method will be searched/called. -->
+    <!-- form tells the Generator to use that form for creating the Controls in the table -->
+    <Property name="orderDocuments" readonly="true" type="Table" subform="OrderDocumentTable" labelKey="key.documents" />
+    
+    <!-- Alternative table definition.
+        Shows the Collection orderHeaderViewTransfers.getOrderDocuments() in a Table.
+        deletable true/false shows a Button "delete" per row.
+        addable true/false shows a Button "add".
+    <Table property="orderDocuments" type="Table" labelKey="key.documentsTable" 
+        deletable="false" addable="false" 
+    >
+        <Col property="fileName" />
+        <Col property="description" editable="true" type="Text" />
+        <Col property="createUser" />
+        <Col property="createDate" type="Date" />
+    </Table>
+    -->
+        
+    
+    <!-- Subform feature.
+	<Property
+            name="orderLongtexts" 
+            type="Subform" subFormName="OrderLongtextDialog" 
+            isLabeled="false" >
+	   <Widget 
+	       widgetClassname="net.neobp.neo.nmw.neoforms.OrderLongtextDialogComponent"
+	       valueClassname="net.neobp.neo.nms.sap.erp.wfm.win.view.transfer.OrderLongtextViewTransfer"
+	   >
+	       <ConstructorArg value="getOrderLongtextDialogContextBean()" />
+	   </Widget>
+	   
+	</Property>
+    -->
+	
+	<Context usrClassName="net.neobp.neo.nms.forms.orderHeader.MyOrderHeaderFormContext"
+	   extClassName="net.neobp.neo.nms.forms.orderHeader.CommonContext"
+	>
+	<!--
+	   <Field name="myOrderHeaderService" ref="orderHeaderService" />
+	   <Field ref="orderHeaderEnhancementService" />
+	   -->
+	</Context>
+
+</Form>
+

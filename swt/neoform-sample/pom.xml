@@ -31,6 +31,12 @@
         <artifactId>org.eclipse.jface</artifactId>
         <version>3.5.0.I20090525-2000</version>
       </dependency>
+
+      <dependency> <!-- runs fine with 32-bit JDK -->
+        <groupId>org.eclipse.swt.win32</groupId>
+        <artifactId>org.eclipse.swt.win32.x86</artifactId>
+        <version>3.5.0.v3550b</version>
+      </dependency>
   </dependencies>
 
   <build>

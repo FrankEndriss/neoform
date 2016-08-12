@@ -30,7 +30,6 @@ public interface NeoformExec {
 
     /** Neoform has not "Neoform thread", but an ExecutorService. Use this if you want to run
      * a job within the Neoform context.
-     * However, currently there is no such context, just use it as a convenience.
      * The executor service could back only one thread, better do not block it.
      * @return the Neoform ExecutorService
      */

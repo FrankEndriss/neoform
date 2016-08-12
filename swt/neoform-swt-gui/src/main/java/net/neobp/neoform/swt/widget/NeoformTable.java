@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 /** Table implementation capable of using a Neoform for displaying the row data.
@@ -57,7 +58,16 @@ public class NeoformTable<C extends Collection<M>, M> extends AbstractSwtNeoform
     public NeoformTable(Composite parent, List<TableColDesc<M>> tableDesc, NeoformExec neoformExec) {
         super(neoformExec);
         this.tableDesc=tableDesc;
-        table=new Table(parent, SWT.VIRTUAL | SWT.BORDER);
+        table=new Table(parent, SWT.VIRTUAL | SWT.BORDER | SWT.FULL_SELECTION);
+        table.setLinesVisible(true);
+        table.setHeaderVisible(true);
+        
+        for(TableColDesc<M> tcd : tableDesc) 
+            new TableColumn(table, SWT.NONE).setText(tcd.getHeader());
+
+        //table.setSize(table.computeSize(SWT.DEFAULT, 200));
+        table.setSize(500, 500);
+
         table.addListener(SWT.SetData, new Listener () {
             public void handleEvent (Event event) {
                 TableItem item = (TableItem) event.item;
@@ -91,10 +101,12 @@ public class NeoformTable<C extends Collection<M>, M> extends AbstractSwtNeoform
     @Override
     protected void value2widget(C values) {
         table.clearAll();
-        // put the data into List form
         // TODO: make this async
-        dataList=new ArrayList<M>(values);
-        table.setItemCount(values.size());
+        // put the data into List form
+        dataList=new ArrayList<M>();
+        if(values!=null)
+            dataList.addAll(values);
+        table.setItemCount(dataList.size());
     }
 
     @Override

@@ -1,6 +1,7 @@
 package net.neobp.sampleModels;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -19,7 +20,7 @@ public class OrderHeaderViewTransfer {
     private String equipment;
     private boolean closed;
 
-    private Collection<OrderDocumentViewTransfer> orderDocuments;
+    private Collection<OrderDocumentViewTransfer> orderDocuments=new ArrayList<OrderDocumentViewTransfer>();
     
     public String getGuid()
     {
@@ -101,9 +102,12 @@ public class OrderHeaderViewTransfer {
     {
         this.closed = closed;
     }
-    public Collection<OrderDocumentViewTransfer> getOrderDocuments()
-    {
+    public Collection<OrderDocumentViewTransfer> getOrderDocuments() {
         return orderDocuments;
+    }
+    
+    public void addOrderDocument(final OrderDocumentViewTransfer orderDocumentViewTransfer) {
+        orderDocuments.add(orderDocumentViewTransfer);
     }
 
 }

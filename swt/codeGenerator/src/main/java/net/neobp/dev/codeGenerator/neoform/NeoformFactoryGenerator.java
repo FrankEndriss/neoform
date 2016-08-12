@@ -189,41 +189,41 @@ public class NeoformFactoryGenerator extends NeoformGenerator {
         int i=0;
         for(NeoformProperty prop : getModel().getProperties()) {
             i++;
-            m.add("\t// column"+prop.getName());
-            m.add("\tTableColDesc<"+msn+"> col"+i+"=new TableColDesc<"+msn+">() {");
+            m.add("\n\t// column "+prop.getName());
+            m.add("\tfinal TableColDesc<"+msn+"> col"+i+"=new TableColDesc<"+msn+">() {");
 
             m.add("\t\t@Override");
             m.add("\t\tpublic String getHeader() {");
             m.add("\t\t\treturn context.getMessageSource().getMessage(\""+prop.getLabelKey()+"\");");
             m.add("\t\t}");
 
-            m.add("public Control createControl(Composite parent, int idx, final "+msn+" model) {");
-            m.add("forms.ensureCapacity(idx+1);");
-            m.add(getModel().getFormClassnameTemplate().getGenClassname().getSimpleName()+" form=forms.get(idx);");
-            m.add("if(form==null) {");
-            m.add("// create the form");
-            m.add("NeoformLayout<Props, Actions> layout=new NeoformTableLayout<Props, Actions>(parent);");
-            m.add("layout.setButtonsVisible(false); // TODO: make programmatically changeable");
-            m.add("form=new "+getModel().getBuilderClassnameTemplate().getGenClassname().getSimpleName()+
+            m.add("\t\tpublic Control createControl(Composite parent, int idx, final "+msn+" model) {");
+            m.add("\t\t\twhile(forms.size()<=idx)\n\t\t\t\tforms.add(null); //ensureCapacity(idx+1);");
+            m.add("\t\t\t"+getModel().getFormClassnameTemplate().getGenClassname().getSimpleName()+" form=forms.get(idx);");
+            m.add("\t\t\tif(form==null) {");
+            m.add("\t\t\t\t// create the form");
+            m.add("\t\t\t\tNeoformLayout<Props, Actions> layout=new NeoformTableLayout<Props, Actions>(parent);");
+            m.add("\t\t\t\tlayout.setButtonsVisible(false); // TODO: make programmatically changeable");
+            m.add("\t\t\t\tform=new "+getModel().getBuilderClassnameTemplate().getGenClassname().getSimpleName()+
                     "().setLayout(layout).createForm(context);");
-            m.add("form.createContents(parent);");
-            m.add("forms.set(idx, form);");
-            m.add("}");
-            m.add("form.setModel(model, false); // TODO: handle model object creation");
-            m.add("return form.get"+StrUtil.firstUp(prop.getName())+"Adapter().getComponent().getControl();");
-            m.add("}");
+            m.add("\t\t\t\tform.createContents(parent);");
+            m.add("\t\t\t\tforms.set(idx, form);");
+            m.add("\t\t\t}");
+            m.add("\t\t\tform.setModel(model, false); // TODO: handle model object creation");
+            m.add("\t\t\treturn form.get"+StrUtil.firstUp(prop.getName())+"Adapter().getComponent().getControl();");
+            m.add("\t\t}");
 
-            m.add("@Override");
-            m.add("public void model2screen("+msn+" model, int idx) {");
-            m.add("// better move whole model to screen: forms.get(idx).setModel(model)");
-            m.add("//forms.get(idx).get"+StrUtil.firstUp(prop.getName())+"Adapter().setComponentValue(model.get"+
+            m.add("\t\t@Override");
+            m.add("\t\tpublic void model2screen("+msn+" model, int idx) {");
+            m.add("\t\t\t// better move whole model to screen: forms.get(idx).setModel(model)");
+            m.add("\t\t\t//forms.get(idx).get"+StrUtil.firstUp(prop.getName())+"Adapter().setComponentValue(model.get"+
                     StrUtil.firstUp(prop.getName())+"());");
-            m.add("}");
-            m.add("};");
-            m.add("list.add(col"+i+");");
+            m.add("\t\t}");
+            m.add("\t};");
+            m.add("\tlist.add(col"+i+");");
 
         }
-        m.add("return list;");
+        m.add("\treturn list;");
         m.add("}");
         jct.addMethod(m);
 

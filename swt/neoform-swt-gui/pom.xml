@@ -27,16 +27,5 @@
       <artifactId>neoform-java</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
-
-    <dependency>
-      <groupId>org.eclipse.swt.win32</groupId>
-      <artifactId>org.eclipse.swt.win32.x86</artifactId>
-      <version>3.5.0.v3550b</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.ui</groupId>
-      <artifactId>org.eclipse.ui.forms</artifactId>
-      <version>3.4.0.v20090526</version>
-    </dependency>
   </dependencies>
 </project>

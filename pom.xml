@@ -9,6 +9,15 @@
   <name>Neoform Root Project</name>
   <description>Parent for the several net.neobp.neoform projects.</description>
   
+
+    <repositories>
+        <repository> 
+		<id>neo-repo</id>
+      		<url>http://nexus.neo-partners.com:8081/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+
+
   <modules>
   	<module>neoform-java</module>
   	<module>android</module>

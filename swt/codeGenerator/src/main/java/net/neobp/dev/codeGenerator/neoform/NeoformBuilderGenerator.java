@@ -13,9 +13,7 @@ import net.neobp.dev.codeGenerator.JavaCodeTemplate;
 /** Generates the SWT Builder class of a Neoform
  */
 public class NeoformBuilderGenerator extends NeoformGenerator {
-    public void generate()
-            throws IOException
-        {
+    public void generate() throws IOException {
             final File outputFile = fileForClass(getModel().getBuilderClassnameTemplate().getGenClassname().getName());
             
             PrintWriter pw=null;
@@ -31,7 +29,7 @@ public class NeoformBuilderGenerator extends NeoformGenerator {
                 if(pw!=null)
                     pw.close();
             }
-        }
+    }
 
         private String getCode() throws IntrospectionException {
             JavaCodeTemplate jct=new JavaCodeTemplate();
@@ -61,8 +59,8 @@ public class NeoformBuilderGenerator extends NeoformGenerator {
             m.add("* @param layout");
             m.add("*/");
             m.add("public "+bsn+" setLayout(final NeoformLayout<Props, Actions> layout) {");
-            m.add("this.layout=layout;");
-            m.add("return this;");
+            m.add("\tthis.layout=layout;");
+            m.add("\treturn this;");
             m.add("}");
             jct.addMethod(m);
             
@@ -74,8 +72,8 @@ public class NeoformBuilderGenerator extends NeoformGenerator {
             m.add("public "+bsn+
                     " setController(final "+ getModel().getControllerClassnameTemplate().getGenClassname().getSimpleName()+
                     " controller) {");
-            m.add("this.controller=controller;");
-            m.add("return this;");
+            m.add("\tthis.controller=controller;");
+            m.add("\treturn this;");
             m.add("}");
             jct.addMethod(m);
             
@@ -87,8 +85,8 @@ public class NeoformBuilderGenerator extends NeoformGenerator {
             m.add("public "+bsn+
                     " setFactory(final "+getModel().getFactoryClassnameTemplate().getGenClassname().getSimpleName()+
                     " factory) {");
-            m.add("this.factory=factory;");
-            m.add("return this;");
+            m.add("\tthis.factory=factory;");
+            m.add("\treturn this;");
             m.add("}");
             jct.addMethod(m);
      
@@ -114,22 +112,20 @@ public class NeoformBuilderGenerator extends NeoformGenerator {
             m.add("*/");
             m.add("public "+fun+" createForm(final "+csn+" context) {");
 
-            m.add("final NeoformLayout<Props, Actions> lLayout=layout==null?new "+lun+"():layout;");
-            m.add("final "+ksn+" lController=controller==null?new "+kun+"():controller;");
-            m.add("final "+vsn+" lFactory=factory==null?new "+vun+"():factory;");
+            m.add("\tfinal NeoformLayout<Props, Actions> lLayout=layout==null?new "+lun+"():layout;");
+            m.add("\tfinal "+ksn+" lController=controller==null?new "+kun+"():controller;");
+            m.add("\tfinal "+vsn+" lFactory=factory==null?new "+vun+"():factory;");
 
-            m.add("final "+fun+" form=new "+fun+"();");
-            m.add("form.setContext(context);");
-            m.add("form.setController(lController);");
-            m.add("form.setLayout(lLayout);");
-            m.add("form.setFactory(lFactory);");
+            m.add("\tfinal "+fun+" form=new "+fun+"();");
+            m.add("\tform.setContext(context);");
+            m.add("\tform.setController(lController);");
+            m.add("\tform.setLayout(lLayout);");
+            m.add("\tform.setFactory(lFactory);");
                 
-            m.add("return form;");
+            m.add("\treturn form;");
             m.add("}");
             jct.addMethod(m);
             
             return jct.toString();
         }
-
-
 }

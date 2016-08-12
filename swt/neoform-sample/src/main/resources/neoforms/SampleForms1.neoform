@@ -8,6 +8,13 @@
 	<Property name="addressStreet" type="Text" labelKey="translate.me2" />
 	<Property name="equipment" type="Text" labelKey="translate.me3" />
 	<Property name="closed" type="Checkbox" labelKey="translate.me.boolean" />
+	
+<!-- Feature sublayout, makes an extra Composite
+    <GridLayout numCols="2">
+    	<Property name="addressName" type="Text" labelKey="translate.me" />
+    	<Property name="addressStreet" type="Text" labelKey="translate.me2" />
+    </GridLayout>
+-->
 
 <!--
 	<Property name="equipment" type="Text" labelKey="translate.me3" >
